@@ -1,5 +1,6 @@
 const request = require('request');
-let catName = process.argv[2];
+let query = process.argv.slice(2);
+let catName = query.join("_");
 
 request(`https://api.thecatapi.com/v1/breeds/search?q=${catName}`, (error, response, body) => {
   if (error) {
@@ -8,7 +9,7 @@ request(`https://api.thecatapi.com/v1/breeds/search?q=${catName}`, (error, respo
   }
 
   let parsedBody = JSON.parse(body);
-  
+
   if (parsedBody[0]) {
     console.log(parsedBody[0].description);
   } else {
