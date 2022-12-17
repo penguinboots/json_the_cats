@@ -15,4 +15,10 @@ describe('fetchBreedDescription', () => {
       done();
     });
   });
+  it('returns null for invalid breed, via callback', (done) => {
+    fetchBreedDescription('ASDF', (err, desc) => {
+      assert.isNull(desc);
+      done();
+    });
+  });
 });
